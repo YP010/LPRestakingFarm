@@ -1,0 +1,42 @@
+.popup {
+    position:fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 1200vh;
+    background-color:rgba(196, 196, 196, 0.2);
+    display:-ms-grid;
+    justify-content: center;
+    align-items: center;
+    overflow-y:scroll;
+    max-height:100%;
+}
+
+.popup-inner {
+    position: relative;
+    padding:32px;
+    width: 100%;
+    max-width: 800px;
+    /* background-color:#FFF; */
+    border-width:1px;  
+    border-style:solid;
+    border-color: #d096ff;
+    overflow-y:scroll; 
+    max-height:100%;
+    background-attachment: fixed;
+    background-color: #1f1f24;
+    background-image: linear-gradient(147deg,rgba(0,154,207,.24) 2%,rgba(149,98,254,.24) 12%,rgba(31,31,36,.24) 30%)
+}
+
+.popup-inner .close-btn {
+    position: absolute;
+    top: 100px;
+    right: 25px;
+}
+
+.popup-inner .close {
+    position: absolute;
+    top: 40px;
+    right: 25px;
+}
+

@@ -1,0 +1,36 @@
+  {
+    "farm": [
+      {
+        "pid": 0,
+        "lpTokenPairsymbol": "Cake-LP",
+        "lpName": "PURSE-BUSD",
+        "lpAddresses": {
+          "56": "0x081F4B87F223621B4B31cB7A727BB583586eAD98"
+        },
+        "icon": "Cake-LP",
+        "platform": "PancakeSwap",
+        "pursePerBlock": "200000000000000000000",
+        "bonusMultiplier": 1,
+        "getLPLink": "https://pancakeswap.finance/add/0xe9e7CEA3DedcA5984780Bafc599bD69ADd087D56/0x29a63F4B209C29B4DC47f06FFA896F32667DAD2C",
+        "lpContract": "https://bscscan.com/address/0x081F4B87F223621B4B31cB7A727BB583586eAD98",
+        "token": {
+          "MAINNET": {
+            "chainId": "56",
+            "address": "0x29a63F4B209C29B4DC47f06FFA896F32667DAD2C",
+            "decimals": "18",
+            "symbol": "PURSE",
+            "name": "Purse Token"
+          }
+        },
+        "quoteToken": {
+          "MAINNET": {
+            "chainId": "56",
+            "address": "0xe9e7CEA3DedcA5984780Bafc599bD69ADd087D56",
+            "decimals": "18",
+            "symbol": "BUSD",
+            "name": "BUSD Token"            
+          }
+        }
+      }
+    ]
+  }
