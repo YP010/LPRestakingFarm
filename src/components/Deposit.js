@@ -30,6 +30,18 @@ class Deposit extends Component {
 
   changeHandler(event) {
     let result = !isNaN(+event); // true if its a number, false if not
+    let afterDot = event.split('.', 2)[1]
+    let afterDotResult = true
+    if (event % 1 != 0 && result == true) {
+      if (afterDot.toString().length > 18) {
+        afterDotResult = false
+      } else {
+        afterDotResult = true
+      }
+    }
+    if (event.length >=2 && event[0]=='0' && event[1]!='.') {
+      result = false
+    }
 
     if (event == "") {
       this.setState({
@@ -52,6 +64,13 @@ class Deposit extends Component {
       this.setState({
         txValidAmount: false
       })
+    } else if (afterDotResult == false){
+      this.setState({
+        message: "Value cannot have more than 18 decimals"
+      })
+      this.setState({
+        txValidAmount: false
+      }) 
     } else {
       this.setState({
         message: ''
@@ -80,28 +99,28 @@ class Deposit extends Component {
 
   render() {
     return (
-      <div id="content" className="mt-0">
-        <h2 className="center textWhite"><b>{this.props.poolSegmentInfo[this.props.n][this.props.i].token[this.props.farmNetwork]["symbol"]}-{this.props.poolSegmentInfo[this.props.n][this.props.i].quoteToken[this.props.farmNetwork]["symbol"]}</b></h2>
+      <div className="mt-0">
+        <h2 className="center textWhite" style={{fontSize:"40px"}}><b>{this.props.poolSegmentInfo[this.props.n][this.props.i].token[this.props.farmNetwork]["symbol"]}-{this.props.poolSegmentInfo[this.props.n][this.props.i].quoteToken[this.props.farmNetwork]["symbol"]}</b></h2>
        
-        <div className="center" style={{ color: 'silver' }}>&nbsp;Deposit <b>&nbsp;{this.props.poolSegmentInfo[this.props.n][this.props.i].token[this.props.farmNetwork]["symbol"]}-{this.props.poolSegmentInfo[this.props.n][this.props.i].quoteToken[this.props.farmNetwork]["symbol"]} LP Token&nbsp;</b> and earn PURSE!!!</div>
+        <div className="center" style={{ fontFamily: 'Verdana', color: 'silver', textAlign:"center" }}>Deposit {this.props.poolSegmentInfo[this.props.n][this.props.i].token[this.props.farmNetwork]["symbol"]}-{this.props.poolSegmentInfo[this.props.n][this.props.i].quoteToken[this.props.farmNetwork]["symbol"]} LP Token and earn PURSE&nbsp;!</div>
         <br />
-        <div className="card mb-3 cardbody" >
+        <div className="card mb-3 cardbody" style={{ fontFamily: 'Verdana', color: 'silver'}}>
           <div className="card-body">
-            <div className='float-left'>
-              <span className='dropdown' style={{ fontSize: '12px' }} onClick={() => {
+            <div className='float-left row mb-3 ml-1' style={{width:"70%"}}>
+              <div className='dropdown' style={{ fontSize: '12px' }} onClick={() => {
                 window.open(this.props.poolSegmentInfo[this.props.n][this.props.i].getLPLink, '_blank')
-              }}> Get {this.props.poolSegmentInfo[this.props.n][this.props.i].token[this.props.farmNetwork]["symbol"]}-{this.props.poolSegmentInfo[this.props.n][this.props.i].quoteToken[this.props.farmNetwork]["symbol"]} <img src={exlink} className='mb-1' height='10' alt="" />
-              </span>
-              <span className='dropdown' style={{ fontSize: '12px' }} onClick={() => {
+              }}>Get {this.props.poolSegmentInfo[this.props.n][this.props.i].token[this.props.farmNetwork]["symbol"]}-{this.props.poolSegmentInfo[this.props.n][this.props.i].quoteToken[this.props.farmNetwork]["symbol"]} <img src={exlink} className='mb-1' height='10' alt="" />
+              </div>
+              <div className='dropdown' style={{ fontSize: '12px' }} onClick={() => {
                 window.open(this.props.poolSegmentInfo[this.props.n][this.props.i].lpContract, '_blank')
-              }}> View Contract <img src={exlink} className='mb-1' height='10' alt="" />
-              </span>
+              }}>View&nbsp;Contract&nbsp;<img src={exlink} className='mb-1' height='10' alt="" />
+              </div>
             </div>
 
             <button
               type="submit"
-              className="btn btn-success btn-sm float-right"
-              style={{ maxWidth: '70px' }}
+              className="btn btn-success btn-sm float-right center mb-3"
+              style={{ position:'absolute', right:'20px' }}
               onClick={(event) => {
                 event.preventDefault()
                 this.props.harvest(this.props.i, this.props.n)
@@ -109,7 +128,7 @@ class Deposit extends Component {
               <small>Harvest</small>
             </button>  <br />  <br />
 
-            <table className="table table-borderless text-center" style={{ color: 'silver' }}>
+            <table className="table table-borderless text-center" style={{ color: 'silver', fontSize:'15px' }}>
               <thead>
                 <tr>
                   <th scope="col">{this.props.poolSegmentInfo[this.props.n][this.props.i].token[this.props.farmNetwork]["symbol"]}-{this.props.poolSegmentInfo[this.props.n][this.props.i].quoteToken[this.props.farmNetwork]["symbol"]} LP Staked </th>
@@ -134,10 +153,10 @@ class Deposit extends Component {
                 {this.props.wallet || this.props.walletConnect ?
                 <div>
                     <div>
-                      <label className="float-left" style={{ color: 'silver' }}><b>Start Farming</b></label>
-                      <span className="float-right" style={{ color: 'silver' }}>
+                      <label className="float-left mt-1" style={{ color: 'silver', fontSize: '15px', width: '40%', minWidth:"120px"}}><b>Start Farming</b></label>
+                      <span className="float-right mb-2 mt-1" style={{ color: 'silver', fontSize: '15px' }}>
                         <span>
-                          LP Balance &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: {parseFloat(window.web3Bsc.utils.fromWei(this.props.lpTokenSegmentBalance[this.props.n][this.props.i].toString(), 'Ether')).toLocaleString('en-US', { maximumFractionDigits: 3 })}
+                          LP Balance&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: {parseFloat(window.web3Bsc.utils.fromWei(this.props.lpTokenSegmentBalance[this.props.n][this.props.i].toString(), 'Ether')).toLocaleString('en-US', { maximumFractionDigits: 3 })}
                         </span>
                         <span><br />
                           PURSE Balance&nbsp;: {parseFloat(window.web3Bsc.utils.fromWei(this.props.purseTokenUpgradableBalance, 'Ether')).toLocaleString('en-US', { maximumFractionDigits: 5 })}
@@ -174,32 +193,40 @@ class Deposit extends Component {
                           }
                         }
                       }}>
-                        <div className="input-group mb-4" >
+                        <div className="input-group mt-0" >
                           <input
                             type="text"
-                            style={{ color: 'silver', backgroundColor: '#28313b' }}
+                            style={{ color: 'silver', backgroundColor: '#28313b', fontSize: '15px' }}
                             ref={(input) => { this.input = input }}
                             className="form-control form-control-lg cardbody"
                             placeholder="0"
+                            onKeyPress={(event) => {
+                              if (!/[0-9.]/.test(event.key)) {
+                                event.preventDefault()
+                              }
+                            }}
+                            onPaste={(event)=>{
+                              event.preventDefault()
+                            }}
                             onChange={(e) => {
                               const value = e.target.value;
                               this.changeHandler(value)
                             }}
                             required />
                           <div className="input-group-append">
-                            <div className="input-group-text cardbody" style={{ color: 'silver' }}>
-                              <img src={pancake} height='25' alt="" />
-                              &nbsp;&nbsp;&nbsp; LP
+                            <div className="input-group-text cardbody" style={{ color: 'silver', fontSize: '15px' }}>
+                              <img src={pancake} height='20' alt="" />
+                              &nbsp;&nbsp;LP
                             </div>
                           </div>
                         </div >
-                        <div style={{ color: 'red' }}>{this.state.message} </div>
+                        <div style={{ color: "#DC143C"  }}>{this.state.message} </div>
 
-                        <div className="rowC center">
-                          <ButtonGroup>
-                            <Button type="submit" className="btn btn-primary" onClick={(event) => {
+                        <div className="row center mt-3">
+                          <ButtonGroup className='mt-2 ml-3'>
+                            <Button type="submit" className="btn btn-primary"  style={{width:"105px"}} onClick={(event) => {
                               this.clickHandlerDeposit()
-                            }}>&nbsp;Deposit&nbsp;</Button>
+                            }}>Deposit</Button>
                             <Button type="text" variant="outline-primary" className="btn" onClick={(event) => {
                               this.state.txValidAmount = true
                               this.state.message = ''
@@ -208,8 +235,8 @@ class Deposit extends Component {
                               this.input.value = window.web3Bsc.utils.fromWei(this.props.lpTokenSegmentBalance[this.props.n][this.props.i], 'Ether')
                             }}>Max</Button>&nbsp;&nbsp;&nbsp;
                           </ButtonGroup>
-                          <ButtonGroup>
-                            <Button type="submit" className="btn btn-primary" onClick={(event) => {
+                          <ButtonGroup  className='mt-2 ml-3'>
+                            <Button type="submit" className="btn btn-primary" style={{width:"105px"}} onClick={(event) => {
                               this.clickHandlerWithdraw()
                             }}>Withdraw</Button>
                             <Button type="text" variant="outline-primary" className="btn" onClick={(event) => {
@@ -224,8 +251,8 @@ class Deposit extends Component {
                       </form>
                       </div>
                       :
-                      <div className="rowC center">
-                        <button className="btn btn-primary btn-block" onClick={(event) => {
+                      <div className="row center mt-3">
+                        <button className="btn btn-primary btn-block" style={{width:"96%"}} onClick={(event) => {
                           console.log("abc")
                           this.props.approve(this.props.i, this.props.n)
                         }}>Approve</button>

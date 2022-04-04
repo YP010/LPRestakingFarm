@@ -460,3 +460,7 @@ tr:nth-child(even) {
   text-align: start !important;
   text-align-last: start !important;
 }
+
+#content{
+  min-height: 1000px;
+}

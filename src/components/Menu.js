@@ -7,6 +7,7 @@ import Buttons from 'react-bootstrap/Button'
 import './App.css';
 import Popup from 'reactjs-popup';
 import { BsFillQuestionCircleFill } from 'react-icons/bs';
+import { FaExclamationCircle } from 'react-icons/fa';
 
 class Menu extends Component {
 
@@ -26,12 +27,12 @@ class Menu extends Component {
                 <div className="center img">
                     <img src={purse2} height='180' alt="" />
                 </div>
-                <h1 className="textWhite center"><b>LP Restaking Farm</b></h1>
-                <div className="center" style={{ color: 'silver' }}>&nbsp;Stake <b>&nbsp;Pancakeswap LP Tokens&nbsp;</b> to earn PURSE!!!</div>
+                <h1 className="textWhite center" style={{fontSize:"40px", textAlign:"center"}}><b>LP Restaking Farm</b></h1>
+                <div className="center mt-4 mb-3" style={{ fontFamily: 'Verdana', color: 'silver', textAlign:"center"}}>Stake Pancakeswap LP Tokens to earn PURSE&nbsp;!</div>
                 <br />
 
-                <div className="rowC center">
-                    <div className="card mb-4 cardbody" style={{ minWidth: '350px', color: 'white' }} >
+                <div className="row center" style={{ minWidth: '300px' }}>
+                    <div className="card mb-4 cardbody" style={{ width: '350px', color: 'white' }} >
                         <div className="card-body">
                             <span>
                                 <span className="float-left">
@@ -42,7 +43,7 @@ class Menu extends Component {
                             </span>
                             <span>
                                 <small>
-                                    <span className="float-left">Total Pending harvest</span>
+                                    <span className="float-left">Total Pending Harvest</span>
                                     <span className="float-right">
                                         <span>
                                             {parseFloat(window.web3Bsc.utils.fromWei(this.props.totalpendingReward, 'Ether')).toLocaleString('en-US', { maximumFractionDigits: 0 })}&nbsp;PURSE
@@ -51,10 +52,10 @@ class Menu extends Component {
                                 </small>
                             </span>
                         </div>
-                    </div> &nbsp;&nbsp;&nbsp;
+                    </div><li style={{color:'transparent'}}/>
 
-                    <div className="card mb-4 cardbody" >
-                        <div className="card-body " style={{ minWidth: '350px', color: 'white' }}>
+                    <div className="card mb-4 cardbody" style={{ width: '350px', color: 'white' }}>
+                        <div className="card-body">
                             <span>
                                 <span className="float-left">
                                     Total PURSE Supply<br /><b>{parseFloat(window.web3Bsc.utils.fromWei(this.props.purseTokenTotalSupply, 'Ether')).toLocaleString('en-US', { maximumFractionDigits: 0 })}</b>
@@ -63,8 +64,8 @@ class Menu extends Component {
                                 </span><br /><br /><br />
                                 <span>
                                     <small>
-                                        <span className="float-left ">Total Reward/block</span>
-                                        <span className="float-right ">
+                                        <span className="float-left">Total Reward / Block</span>
+                                        <span className="float-right">
                                             <span>
                                                 {window.web3Bsc.utils.fromWei(this.props.totalrewardperblock, 'Ether')}&nbsp;PURSE
                                             </span>
@@ -73,12 +74,12 @@ class Menu extends Component {
                                 </span>
                             </span>
                         </div>
-                    </div>
+                    </div><li style={{color:'transparent'}}/>
                 </div>
 
                 <br />
-                <div className="center" style={{ color: 'white' }}><b><big>Select Your Favourite pool entrees!</big></b></div>
-                <div className="center" style={{ color: 'silver' }}><small>&nbsp;! Attention:&nbsp;Be sure to familiar with protocol risks and fees before using the farms!</small></div>
+                <div className="center mb-2" style={{ color: 'white' }}><b><big>Select Your Favourite pool entrees&nbsp;!</big></b></div>
+                <div className="center" style={{ color: 'silver' }}><small><FaExclamationCircle style={{fontSize:"13px", marginBottom:"3px"}}/>&nbsp;&nbsp;Attention&nbsp;: Be sure to familiar with protocol risks and fees before using the farms&nbsp;!</small></div>
                 <br />
 
 
