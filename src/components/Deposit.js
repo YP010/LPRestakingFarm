@@ -42,6 +42,9 @@ class Deposit extends Component {
     if (event.length >=2 && event[0]=='0' && event[1]!='.') {
       result = false
     }
+    if (event[0]=="."){
+      result = false
+    }
 
     if (event == "") {
       this.setState({

@@ -943,61 +943,64 @@ class App extends Component {
   stake = async (amount) => {
     if (this.state.walletConnect == true) {
       let purseStaking = new window.web3Con.eth.Contract(PurseStaking.abi, "0xFb1D31a3f51Fb9422c187492D8EA14921d6ea6aE") 
+      this.setState({ stakeLoading: false })
       await purseStaking.methods.enter(amount).send({ from: this.state.account }).then(async (result) => {
         this.componentWillMount()
+        this.setState({ stakeLoading: true })
       }).catch((err) => {
+        this.setState({ stakeLoading: true })
         if (err.code === 4001) {
-          // EIP-1193 userRejectedRequest error
-          // If this happens, the user rejected the connection request.
           alert("Something went wrong. Code: 4001 User rejected the request.")
         } else {
-          console.error(err);
+          console.error(err)
         }
-      });   
+      })  
     } else if (this.state.wallet == true) {
-      this.setState({ loading: false })
       let purseStaking = new window.web3.eth.Contract(PurseStaking.abi, "0xFb1D31a3f51Fb9422c187492D8EA14921d6ea6aE") 
+      this.setState({ stakeLoading: false })
       await purseStaking.methods.enter(amount).send({ from: this.state.account }).then(async (result) => {
         this.componentWillMount()
+        this.setState({ stakeLoading: true })
       }).catch((err) => {
+        this.setState({ stakeLoading: true })
         if (err.code === 4001) {
-          // EIP-1193 userRejectedRequest error
-          // If this happens, the user rejected the connection request.
           alert("Something went wrong. Code: 4001 User rejected the request.")
         } else {
-          console.error(err);
+          console.error(err)
         }
-      });   
+      })
     }
   }
 
   unstake = async (receipt) => {
     if (this.state.walletConnect == true) {
       let purseStaking = new window.web3Con.eth.Contract(PurseStaking.abi, "0xFb1D31a3f51Fb9422c187492D8EA14921d6ea6aE") 
+      this.setState({ stakeLoading: false })
       await purseStaking.methods.leave(receipt).send({ from: this.state.account }).then(async (result) => {
         this.componentWillMount()
+        this.setState({ stakeLoading: true })
       }).catch((err) => {
+        this.setState({ stakeLoading: true })
         if (err.code === 4001) {
-          // EIP-1193 userRejectedRequest error
-          // If this happens, the user rejected the connection request.
           alert("Something went wrong. Code: 4001 User rejected the request.")
         } else {
-          console.error(err);
+          console.error(err)
         }
-      });   
+      })
     } else if (this.state.wallet == true) {
       let purseStaking = new window.web3.eth.Contract(PurseStaking.abi, "0xFb1D31a3f51Fb9422c187492D8EA14921d6ea6aE") 
+      this.setState({ stakeLoading: false })
       await purseStaking.methods.leave(receipt).send({ from: this.state.account }).then(async (result) => {
         this.componentWillMount()
+        this.setState({ stakeLoading: true })
       }).catch((err) => {
+        this.setState({ stakeLoading: true })
         if (err.code === 4001) {
-          // EIP-1193 userRejectedRequest error
-          // If this happens, the user rejected the connection request.
           alert("Something went wrong. Code: 4001 User rejected the request.")
         } else {
-          console.error(err);
+          console.error(err)
         }
-      });  
+      })
     }
   }
 
@@ -1012,15 +1015,31 @@ class App extends Component {
   approvePurse = async () => {
     if (this.state.walletConnect == true) {
       let purseTokenUpgradable = new window.web3Con.eth.Contract(PurseTokenUpgradable.abi, "0x29a63F4B209C29B4DC47f06FFA896F32667DAD2C")
+      this.setState({ stakeLoading: false })
       await purseTokenUpgradable.methods.approve("0xFb1D31a3f51Fb9422c187492D8EA14921d6ea6aE", "115792089237316195423570985008687907853269984665640564039457584007913129639935").send({ from: this.state.account }).then(async (result) => {
         this.componentWillMount()
+        this.setState({ stakeLoading: true })
+      }).catch((err) => {
+        this.setState({ stakeLoading: true })
+        if (err.code === 4001) {
+          alert("Something went wrong. Code: 4001 User rejected the request.")
+        } else {
+          console.error(err)
+        }
       })
-      this.componentWillMount()
-      this.setState({ loading: true })
     } else if (this.state.wallet == true) {
       let purseTokenUpgradable = new window.web3.eth.Contract(PurseTokenUpgradable.abi, "0x29a63F4B209C29B4DC47f06FFA896F32667DAD2C")
+      this.setState({ stakeLoading: false })
       await purseTokenUpgradable.methods.approve("0xFb1D31a3f51Fb9422c187492D8EA14921d6ea6aE", "115792089237316195423570985008687907853269984665640564039457584007913129639935").send({ from: this.state.account }).then(async (result) => {
         this.componentWillMount()
+        this.setState({ stakeLoading: true })
+      }).catch((err) => {
+        this.setState({ stakeLoading: true })
+        if (err.code === 4001) {
+          alert("Something went wrong. Code: 4001 User rejected the request.")
+        } else {
+          console.error(err)
+        }
       })
     }
   }
@@ -1081,6 +1100,7 @@ class App extends Component {
       purseStakingUserAllowance: '0',
       purseStakingTotalStake: '0',
       purseStakingTotalReceipt: '0',
+      stakeLoading: true
     }
   }
 
@@ -1231,6 +1251,7 @@ class App extends Component {
       unstake={this.unstake}
       checkPurseAmount={this.checkPurseAmount}
       approvePurse = {this.approvePurse}
+      stakeLoading={this.state.stakeLoading}
     />
 
     return (

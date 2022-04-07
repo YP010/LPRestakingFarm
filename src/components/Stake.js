@@ -7,6 +7,7 @@ import { BsFillQuestionCircleFill } from 'react-icons/bs'
 import fox from '../metamask-fox.svg'
 import walletconnectLogo from '../walletconnect-logo.svg'
 import { IoStar } from 'react-icons/io5'
+import ReactLoading from 'react-loading'
 
 import './App.css';
 
@@ -45,6 +46,9 @@ class Stake extends Component {
       }
     }
     if (event.length >=2 && event[0]=='0' && event[1]!='.') {
+      result = false
+    }
+    if (event[0]=="."){
       result = false
     }
 
@@ -147,7 +151,7 @@ class Stake extends Component {
               if (this.state.txDeposit === true && this.state.txWithdraw === false && this.state.txCheck === false) {
                 let amount = this.input.value.toString()
                 let amountWei = window.web3Bsc.utils.toWei(amount, 'Ether')
-                if (bigInt(amountWei).value > bigInt(purseTokenUpgradableBalance)) {
+                if (bigInt(amountWei).value > bigInt(purseTokenUpgradableBalance).value) {
                   alert("Insufficient PURSE to stake!")
                 } else {
                   this.props.stake(amountWei)
@@ -155,7 +159,7 @@ class Stake extends Component {
               } else if (this.state.txDeposit === false && this.state.txWithdraw === true && this.state.txCheck === false) {
                 let receipt = this.input.value.toString()
                 let receiptWei = window.web3Bsc.utils.toWei(receipt, 'Ether')
-                if (bigInt(receiptWei) > bigInt(purseStakingUserReceipt)) {
+                if (bigInt(receiptWei).value > bigInt(purseStakingUserReceipt).value) {
                   alert("Insufficient Share to withdraw!")
                 } else {
                   this.props.unstake(receiptWei)
@@ -163,7 +167,7 @@ class Stake extends Component {
               } else if (this.state.txDeposit === false && this.state.txWithdraw === false && this.state.txCheck === true) {
                   let receipt = this.input.value.toString()
                   let receiptWei = window.web3Bsc.utils.toWei(receipt, 'Ether')
-                if (bigInt(receiptWei) > bigInt(purseStakingUserReceipt)) {
+                if (bigInt(receiptWei).value > bigInt(purseStakingUserReceipt).value) {
                   alert("Insufficient Share to withdraw!")
                 } else {
                   let checkPurseAmount = await this.props.checkPurseAmount(receiptWei)
@@ -240,6 +244,8 @@ class Stake extends Component {
                 </div>
               </div>
 
+              {this.props.stakeLoading ? 
+              <div>
               <div>
                 <div className="textWhiteSmall mb-1"><b>Address:</b></div>
                 <div className="textWhiteSmall mb-2" style={{ color : "#B0C4DE" }}><b>{this.props.account}</b></div>
@@ -272,10 +278,15 @@ class Stake extends Component {
                 <div className="textWhiteSmall mb-1" ><b>{this.state.purseMessage}</b></div>
                 <div className="textWhiteSmall mb-3" style={{ color : "#B0C4DE" }}><b>{this.state.getPurseAmount}</b></div>
               </div>  
+              </div> 
+              :<div className='center' style={{padding: "95px 0px"}}><ReactLoading type={"spin"} height={100} width={100}/></div>
+            }
             </div>
 
             {purseStakingUserAllowance > 100000000000000000000000000000?
               <div>
+                {this.props.stakeLoading ? 
+                <div>
                 <div className="center">
                   <div className="input-group mb-0" style={{width: "95%"}} >
                     <input
@@ -330,13 +341,17 @@ class Stake extends Component {
                     }}>Max</Button>
                   </ButtonGroup>
                 </div>
+                </div>
+                : <div></div>}
               </div>
                 
               :
               <div className="center">
+                {this.props.stakeLoading ? 
                 <button type="button" className="btn btn-primary btn-block" onClick={(event) => {
                     this.props.approvePurse()
                 }}>Approve</button>
+                : <div></div>}
               </div>
               }
             </div>
