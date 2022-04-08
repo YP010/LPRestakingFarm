@@ -1,7 +1,7 @@
 {
   "main.css": "/static/css/main.e2e00109.chunk.css",
-  "main.js": "/static/js/main.a88eaed9.chunk.js",
-  "main.js.map": "/static/js/main.a88eaed9.chunk.js.map",
+  "main.js": "/static/js/main.8d7bb102.chunk.js",
+  "main.js.map": "/static/js/main.8d7bb102.chunk.js.map",
   "static/css/1.f4524e49.chunk.css": "/static/css/1.f4524e49.chunk.css",
   "static/js/1.5273b902.chunk.js": "/static/js/1.5273b902.chunk.js",
   "static/js/1.5273b902.chunk.js.map": "/static/js/1.5273b902.chunk.js.map",
@@ -14,9 +14,9 @@
   "static/media/pancakeswap.png": "/static/media/pancakeswap.bdd7c45a.png",
   "static/media/Blockchain.png": "/static/media/Blockchain.6e74b3ec.png",
   "static/media/asterisk.png": "/static/media/asterisk.d69fefca.png",
-  "static/css/1.f4524e49.chunk.css.map": "/static/css/1.f4524e49.chunk.css.map",
   "static/css/main.e2e00109.chunk.css.map": "/static/css/main.e2e00109.chunk.css.map",
+  "static/css/1.f4524e49.chunk.css.map": "/static/css/1.f4524e49.chunk.css.map",
   "index.html": "/index.html",
-  "precache-manifest.4ef0b15666dbee6b69a36255d19ecd3e.js": "/precache-manifest.4ef0b15666dbee6b69a36255d19ecd3e.js",
+  "precache-manifest.287898b4a58afdcfc3e603d99849e720.js": "/precache-manifest.287898b4a58afdcfc3e603d99849e720.js",
   "service-worker.js": "/service-worker.js"
 }
