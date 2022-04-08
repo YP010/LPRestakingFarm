@@ -50,22 +50,17 @@ class Navb extends Component {
             <NavLink to='/home' >Home</NavLink>
           </div>
           <div className="mr-4">
-            <Popup className='popup1' trigger={open => (
-              <NavLink0 to='/lpfarm/menu'> Farm</NavLink0>
-            )}
-              on="hover"
-              position="bottom left"
-              offsetY={-17}
-              offsetX={-5}
-              mouseLeaveDelay={200}
-              contentStyle={{ padding: '3px' }}
-              arrow={false}
-            ><div>
-                <Link to='/lpfarm/farmInfo'></Link>
-                <div style={{ marginTop: '5px' }}><Link className='dropdown0' to='/lpfarm/farmInfo' >&nbsp;Farm Dashboard</Link><br /></div>
-                <div style={{ marginTop: '8px' }}><Link className='dropdown' to='/lpfarm/menu' >&nbsp;Farm Menu</Link></div>
-              </div>
-            </Popup>
+            <Dropdown>
+              <Dropdown.Toggle className='center' variant="transparent" style={{padding:0}}><NavLink to="/"> Farm</NavLink></Dropdown.Toggle>
+               <Dropdown.Menu style={{backgroundColor:"#28313b", marginTop:"8px"}}>
+                <Dropdown.Item href="/lpfarm/farmInfo">
+                  <div className="dropdown0" style={{ paddingBottom: '12px' }}>Farm Dashboard</div>
+                </Dropdown.Item>
+                <Dropdown.Item href='/lpfarm/menu'>
+                  <div className="dropdown">Farm Menu</div>
+                </Dropdown.Item>
+               </Dropdown.Menu>
+            </Dropdown>
           </div>
           {/*<div className="mr-4">
             <NavLink to='/distribution' >Distribution</NavLink>
@@ -103,50 +98,43 @@ class Navb extends Component {
                 <div className='center'>
                   {this.props.wallet || this.props.walletConnect ?
                     <div>
-                      <Popup className='popup1' trigger={open => (
-                        <Buttons variant="secondary" size="sm"> {this.props.first4Account}...{this.props.last4Account}</Buttons>
-                      )}
-                        on="hover"
-                        position="bottom right"
-                        offsetY={-17}
-                        offsetX={-5}
-                        mouseLeaveDelay={200}
-                        contentStyle={{ padding: '3px' }}
-                        arrow={false}
-                      ><div>
-                          <div className='dropdown0' onClick={() => {
+                      <Dropdown>
+                        <Dropdown.Toggle variant="transparent" style={{padding:0}}><Buttons variant="secondary" size="sm"> {this.props.first4Account}...{this.props.last4Account}</Buttons></Dropdown.Toggle>
+                        <Dropdown.Menu style={{backgroundColor:"#28313b", marginTop:"8px"}}>
+                          <Dropdown.Item>
+                          <div className='dropdown0' style={{ paddingBottom: '12px' }} onClick={() => {
                             window.open(`https://bscscan.com/address/${this.props.account}`, '_blank')
                           }}>&nbsp;Wallet</div>
+                          </Dropdown.Item>
+                          <Dropdown.Item>
                           <div className='dropdown' onClick={() => {
                             this.props.setWalletTrigger(false)
                             if (this.props.walletConnect == true) {
                               this.props.WalletDisconnect()
                             }
                           }}>&nbsp;Disconnect</div>
-                        </div>
-                      </Popup>
+                          </Dropdown.Item>
+                        </Dropdown.Menu>
+                      </Dropdown>
+                      
                     </div> : <div>
-                      <Popup className='popup1' trigger={open => (
-                        <Buttons variant="secondary" size="sm" > Connect Wallet</Buttons>
-                      )}
-                        on="hover"
-                        position="bottom right"
-                        offsetY={-14}
-                        offsetX={0}
-                        mouseLeaveDelay={200}
-                        contentStyle={{ padding: '3px' }}
-                        arrow={false}
-                      ><div>
-                          <div className='dropdown0' onClick={async () => {
+                      <Dropdown>
+                        <Dropdown.Toggle variant="transparent" style={{padding:0}}><Buttons variant="secondary" size="sm" > Connect Wallet</Buttons></Dropdown.Toggle>
+                        <Dropdown.Menu style={{backgroundColor:"#28313b", marginTop:"8px"}}>
+                        <Dropdown.Item>
+                        <div className='dropdown0' style={{ paddingBottom: '12px' }} onClick={async () => {
                             await this.props.connectWallet()
                           }
                           }><img src={fox} width="23" height="23" className="d-inline-block" alt="" />&nbsp; Metamask</div>
-                          <div className='dropdown' onClick={async () => {
+                        </Dropdown.Item>
+                        <Dropdown.Item>
+                        <div className='dropdown' onClick={async () => {
                             await this.props.WalletConnect()
                           }
                           }><img src={walletconnectLogo} width="26" height="23" className="d-inline-block" alt="" />&nbsp; WalletConnect</div>
-                        </div>
-                      </Popup>
+                        </Dropdown.Item>
+                        </Dropdown.Menu>
+                      </Dropdown>
                     </div>}
                 </div>
                 </MediaQuery>
