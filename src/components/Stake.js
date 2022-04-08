@@ -136,7 +136,7 @@ class Stake extends Component {
     let purseStakingUserAllowance = this.props.purseStakingUserAllowance
     let purseStakingTotalStake = this.props.purseStakingTotalStake
     let purseStakingTotalReceipt = this.props.purseStakingTotalReceipt
-    const contentStyle = { background: '#353A40', border: "1px solid #596169", width:"50%", minWidth:"300px"};
+    const contentStyle = { background: '#353A40', border: "1px solid #596169", width:"50%", minWidth:"320px"};
 
     return (
       <div id="content" className="mt-4">
@@ -374,10 +374,10 @@ class Stake extends Component {
                       </button>
                       <div className="textWhiteMedium mb-2" style={{borderBottom: "1px Solid Gray", padding: "10px"}}> Connect a Wallet </div>
                       <div className="center mt-4 mb-3">
-                        <Button type="button" variant="secondary" style={{maxWidth:"200px", padding:"6px 20px"}} onClick={async () => {
+                        <Button type="button" variant="secondary" style={{minWidth:"150px",maxWidth:"250px", padding:"6px 32px"}} onClick={async () => {
                           await this.props.connectWallet()
-                        }}><img src={fox} width="23" height="23" alt=""/>&nbsp;Metamask</Button>&nbsp;&nbsp;&nbsp;
-                        <Button type="button" variant="secondary" style={{maxWidth:"200px"}} onClick={async () => {
+                        }}><img src={fox} width="23" height="23" alt=""/>&nbsp;Metamask</Button><span style={{width:"15px"}}/>
+                        <Button type="button" variant="secondary" style={{minWidth: "150px",maxWidth:"250px"}} onClick={async () => {
                           await this.props.WalletConnect()
                         }}><img src={walletconnectLogo} width="26" height="23" alt=""/>&nbsp;WalletConnect</Button>
                       </div>

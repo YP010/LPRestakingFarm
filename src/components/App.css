@@ -437,7 +437,7 @@ table {
   font-family: arial, sans-serif;
   border-collapse: collapse;
   table-layout: fixed;
-  width: 900px;
+  width: 80vw;
 }
 
 td,
@@ -463,4 +463,45 @@ tr:nth-child(even) {
 
 #content{
   min-height: 1000px;
+  padding-top: 40px;
+}
+
+.bm-burger-button {
+  position: fixed;
+  width: 20px;
+  height: 16px;
+  left: 12px;
+  top: 16px;
+}
+.bm-burger-bars {
+  background: #ffffff;
+}
+.bm-burger-bars-hover {
+  background: #bdc3c7;
+}
+.bm-cross-button {
+  height: 24px;
+  width: 24px;
+}
+.bm-cross {
+  background: #bdc3c7;
+}
+.bm-menu-wrap {
+  position: fixed;
+  height: 100%;
+  margin-left: -15px;
+}
+.bm-menu {
+  margin-left: 0;
+  background: #373a47;
+  padding: 2em 0.5em;
+}
+.bm-item-list {
+  padding: 1em;
+}
+.dropdown-toggle::after {
+  display: none;
+}
+.dropdown-item:hover {
+background-color: #28313b;
 }
