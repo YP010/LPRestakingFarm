@@ -83,6 +83,7 @@ class Landing extends Component {
         <div className="mt-1 rowC" style={{fontSize:"13px"}}><IoStar style={{minWidth:"12px",marginTop:"2px"}}/>&nbsp;&nbsp;<div>PURSE staked into PURSE Staking contract</div></div>
         <div className="mt-1 rowC" style={{fontSize:"13px"}}><IoStar style={{minWidth:"12px",marginTop:"2px"}}/>&nbsp;&nbsp;<div>PURSE withdrawn from PURSE Staking contract</div></div>
         <div className="mt-1 rowC" style={{fontSize:"13px"}}><IoStar style={{minWidth:"12px",marginTop:"2px"}}/>&nbsp;&nbsp;<div>PURSE received when remove liquidity from PURSE-BUSD LP Pancake contract</div></div>
+        <div className="mt-1 rowC" style={{fontSize:"13px"}}><IoStar style={{minWidth:"12px",marginTop:"2px"}}/>&nbsp;&nbsp;<div>PURSE received when swap from BUSD using PURSE-BUSD PancakeSwap</div></div>
     </div>
     </Bounce>
     </div>
