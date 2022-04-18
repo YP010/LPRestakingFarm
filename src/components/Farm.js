@@ -16,7 +16,7 @@ class Farm extends Component {
                 <tr>
                   <th scope="col">Total Pool</th>
                   <th scope="col">PURSE Token Total Supply</th>
-                  <th scope="col">Farm PURSE Reward</th>
+                  <th scope="col">Farm's PURSE Reward</th>
                 </tr>
               </thead>
               <tbody>
@@ -52,7 +52,7 @@ class Farm extends Component {
               <thead>
                 <tr>
                   <th scope="col">Total Pool</th>
-                  <th scope="col">Farm PURSE Reward</th>
+                  <th scope="col">Farm's PURSE Reward</th>
                 </tr>
               </thead>
               <tbody>
@@ -91,12 +91,12 @@ class Farm extends Component {
           
           </div></div>
           </MediaQuery>
-          <br /> <br />
+          <br/> <br/>
 
-        <div className="text" style={{ color: 'silver' }}>&nbsp;<big>Remarks:</big></div><br />
-        <div className="text" style={{ color: 'silver' }}>&nbsp;<small><IoStar className='mb-1'/>&nbsp;Farm Cap Reward Token: Total capacity reward tokens will be minted by this farm.</small></div>
-        <div className="text" style={{ color: 'silver' }}>&nbsp;<small><IoStar className='mb-1'/>&nbsp;Farm Minted Reward Token: Total reward tokens minted by this farm until now.</small></div>
-        <div className="text" style={{ color: 'silver' }}>&nbsp;<small><IoStar className='mb-1'/>&nbsp;Farm's Reward Token: Total reward tokens inside this farm (smart contract).</small></div>
+        <div className="text mt-5" style={{ color: 'silver', fontSize: "14px" }}>&nbsp;Remarks :</div><br/>
+        <div className="rowC ml-2 mt-2" style={{ color: 'silver', fontSize: "12px" }}>&nbsp;<div><IoStar className='mb-1'/>&nbsp;&nbsp;</div><div>Farm Cap Reward Token: Total capacity reward tokens will be minted by this farm.</div></div>
+        <div className="rowC ml-2 mt-1" style={{ color: 'silver', fontSize: "12px" }}>&nbsp;<div><IoStar className='mb-1'/>&nbsp;&nbsp;</div><div>Farm Minted Reward Token: Total reward tokens minted by this farm until now.</div></div>
+        <div className="rowC ml-2 mt-1" style={{ color: 'silver', fontSize: "12px" }}>&nbsp;<div><IoStar className='mb-1'/>&nbsp;&nbsp;</div><div>Farm's Reward Token: Total reward tokens inside this farm (smart contract).</div></div>
       </div>
 
 

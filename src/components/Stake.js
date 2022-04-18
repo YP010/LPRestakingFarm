@@ -3,7 +3,7 @@ import Button from 'react-bootstrap/Button'
 import ButtonGroup from 'react-bootstrap/ButtonGroup'
 import bigInt from 'big-integer'
 import Popup from 'reactjs-popup'
-import { BsFillQuestionCircleFill } from 'react-icons/bs'
+import { BsFillQuestionCircleFill, BsInfoCircleFill } from 'react-icons/bs'
 import fox from '../metamask-fox.svg'
 import walletconnectLogo from '../walletconnect-logo.svg'
 import { IoStar } from 'react-icons/io5'
@@ -136,6 +136,9 @@ class Stake extends Component {
     let purseStakingUserAllowance = this.props.purseStakingUserAllowance
     let purseStakingTotalStake = this.props.purseStakingTotalStake
     let purseStakingTotalReceipt = this.props.purseStakingTotalReceipt
+    let sum30TransferAmount = this.props.sum30TransferAmount
+    let purseStakingAPR = parseFloat(sum30TransferAmount*12*100/purseStakingTotalStake).toLocaleString('en-US', { maximumFractionDigits: 5 })
+    let sharePercent = parseFloat(purseStakingUserReceipt*100/purseStakingTotalReceipt).toLocaleString('en-US', { maximumFractionDigits: 5 })
     const contentStyle = { background: '#353A40', border: "1px solid #596169", width:"50%", minWidth:"320px"};
 
     return (
@@ -192,8 +195,8 @@ class Stake extends Component {
                 )}
                   on="hover"
                   position="right"
-                  offsetY={1}
-                  offsetX={5}
+                  offsetY={-23}
+                  offsetX={0}
                   contentStyle={{ padding: '3px' }}>
                   <span className="textInfo"> Stake your PURSE to earn auto-compounding PURSE rewards over time</span>
                 </Popup></Button>
@@ -206,8 +209,8 @@ class Stake extends Component {
                 )}
                   on="hover"
                   position="bottom"
-                  offsetY={1}
-                  offsetX={5}
+                  offsetY={-23}
+                  offsetX={0}
                   contentStyle={{ padding: '3px' }}>
                   <span className="textInfo"> Withdraw your stake and earn PURSE rewards anytime using your share</span>
                 </Popup></Button>
@@ -220,8 +223,8 @@ class Stake extends Component {
                )}
                  on="hover"
                  position="left"
-                 offsetY={1}
-                 offsetX={5}
+                 offsetY={-23}
+                 offsetX={0}
                  contentStyle={{ padding: '3px' }}>
                  <span className="textInfo"> Check your withdrawable PURSE using your share </span>
                </Popup></Button>
@@ -255,23 +258,91 @@ class Stake extends Component {
                 <div className="textWhiteSmall mb-2" style={{ color : "#B0C4DE" }}><b>{parseFloat(window.web3Bsc.utils.fromWei(purseTokenUpgradableBalance, 'Ether')).toLocaleString('en-US', { maximumFractionDigits: 5 }) + " PURSE"}</b></div>
               </div>
               <div className='row ml-0'>
+              <div style={{width:"50%", minWidth:"250px"}}>
+                  <div className="textWhiteSmall mb-1" ><b>APR:&nbsp;&nbsp;</b>
+                  <Popup trigger={open => (
+                    <span style={{ position: "relative", top: '-1.5px' }}><BsInfoCircleFill size={10}/></span>
+                    )}
+                    on="hover"
+                    position="right"
+                    offsetY={-23}
+                    offsetX={0}
+                    contentStyle={{ padding: '3px' }}>
+                    <span className="textInfo">Percentage of Past 30 Days Distribution Sum x 12 / Total Staked (Pool).</span>
+                  </Popup>      
+                  </div>
+                  <div className="textWhiteSmall mb-2" style={{ color : "#B0C4DE" }}><b>{purseStakingAPR+" %"}</b></div>
+              </div> 
+              <div style={{paddingRight:"2px", width:"50%", minWidth:"250px"}}>
+                <div className="textWhiteSmall mb-1"><b>Past 30 Days Distribution Sum:</b></div>
+                <div className="textWhiteSmall mb-2" style={{ color : "#B0C4DE" }}><b>{parseFloat(window.web3Bsc.utils.fromWei(sum30TransferAmount, 'Ether')).toLocaleString('en-US', { maximumFractionDigits: 5 }) + " PURSE"}</b></div>
+              </div>
+              </div>
+              <div className='row ml-0'>
                 <div style={{paddingRight:"2px", width:"50%", minWidth:"250px"}}>
-                  <div className="textWhiteSmall mb-1" ><b>Staked Balance:</b></div>
+                  <div className="textWhiteSmall mb-1" ><b>Staked Balance:&nbsp;&nbsp;</b>
+                  <Popup trigger={open => (
+                    <span style={{ position: "relative", top: '-1.5px' }}><BsInfoCircleFill size={10}/></span>
+                    )}
+                    on="hover"
+                    position="top"
+                    offsetY={20}
+                    offsetX={0}
+                    contentStyle={{ padding: '3px' }}>
+                    <span className="textInfo">Amount of PURSE user has staked + PURSE reward from PURSE Distribution</span>
+                  </Popup> 
+                  </div>   
                   <div className="textWhiteSmall mb-2" style={{ color : "#B0C4DE" }}><b>{parseFloat(window.web3Bsc.utils.fromWei(purseStakingUserStake, 'Ether')).toLocaleString('en-US', { maximumFractionDigits: 5 })+ " PURSE (" + parseFloat(window.web3Bsc.utils.fromWei(purseStakingUserStake, 'Ether')*this.props.PURSEPrice).toLocaleString('en-US', { maximumFractionDigits: 5 }) + " USD)"}</b></div>
                 </div>
                 <div style={{width:"50%", minWidth:"250px"}}>
-                  <div className="textWhiteSmall mb-1" ><b>Total Staked (Pool):</b></div>
+                  <div className="textWhiteSmall mb-1" ><b>Total Staked (Pool):&nbsp;&nbsp;</b>
+                  <Popup trigger={open => (
+                    <span style={{ position: "relative", top: '-1.5px' }}><BsInfoCircleFill size={10}/></span>
+                    )}
+                    on="hover"
+                    position="top"
+                    offsetY={20}
+                    offsetX={0}
+                    contentStyle={{ padding: '3px' }}>
+                    <span className="textInfo">Total PURSE amount in the PURSE Staking contract</span>
+                    <span className="textInfo mt-2">Calculated based on PURSE staked by PURSE holders + PURSE Distribution</span>                    
+                  </Popup> 
+                  </div>
                   <div className="textWhiteSmall mb-2" style={{ color : "#B0C4DE" }}><b>{parseFloat(window.web3Bsc.utils.fromWei(purseStakingTotalStake, 'Ether')).toLocaleString('en-US', { maximumFractionDigits: 5 })+ " PURSE (" + parseFloat(window.web3Bsc.utils.fromWei(purseStakingTotalStake, 'Ether')*this.props.PURSEPrice).toLocaleString('en-US', { maximumFractionDigits: 5 }) + " USD)"}</b></div>
                 </div> 
               </div>
               <div className='row ml-0'>
                 <div style={{paddingRight:"2px", width:"50%", minWidth:"250px"}}>
-                  <div className="textWhiteSmall mb-1" ><b>Share Balance:</b></div>
-                  <div className="textWhiteSmall mb-3" style={{ color : "#B0C4DE" }}><b>{parseFloat(window.web3Bsc.utils.fromWei(purseStakingUserReceipt, 'Ether')).toLocaleString('en-US', { maximumFractionDigits: 5 })+ " Share"}</b></div>
+                  <div className="textWhiteSmall mb-1" ><b>Share Balance:&nbsp;&nbsp;</b>
+                  <Popup trigger={open => (
+                    <span style={{ position: "relative", top: '-1.5px' }}><BsInfoCircleFill size={10}/></span>
+                    )}
+                    on="hover"
+                    position="top"
+                    offsetY={20}
+                    offsetX={0}
+                    contentStyle={{ padding: '3px' }}>
+                    <span className="textInfo">Represents the amount of PURSE the user owns in the PURSE Staking contract</span>
+                    <span className="textInfo mt-2">Staked Balance = Share Balance / Total Share (Pool) x Total Staked (Pool)</span>
+                  </Popup>       
+                  </div>
+                  <div className="textWhiteSmall mb-3" style={{ color : "#B0C4DE" }}><b>{parseFloat(window.web3Bsc.utils.fromWei(purseStakingUserReceipt, 'Ether')).toLocaleString('en-US', { maximumFractionDigits: 5 })+ " Share ( " + sharePercent + " %)"}</b></div>
                 </div>
                 <div style={{width:"50%", minWidth:"250px"}}>
-                  <div className="textWhiteSmall mb-1" ><b>Total Share (Pool):</b></div>
-                  <div className="textWhiteSmall mb-3" style={{ color : "#B0C4DE" }}><b>{parseFloat(window.web3Bsc.utils.fromWei(purseStakingTotalReceipt, 'Ether')).toLocaleString('en-US', { maximumFractionDigits: 5 })+ " Share"}</b></div>
+                  <div className="textWhiteSmall mb-1" ><b>Total Share (Pool):&nbsp;&nbsp;</b>
+                  <Popup trigger={open => (
+                    <span style={{ position: "relative", top: '-1.5px' }}><BsInfoCircleFill size={10}/></span>
+                    )}
+                    on="hover"
+                    position="top"
+                    offsetY={20}
+                    offsetX={0}
+                    contentStyle={{ padding: '3px' }}>
+                    <span className="textInfo">Represents the total amount of PURSE in the PURSE Staking contract</span>
+                    <span className="textInfo mt-2">Total Share (Pool) ≡ Total Staked (Pool)</span>
+                  </Popup>     
+                  </div>
+                  <div className="textWhiteSmall mb-3" style={{ color : "#B0C4DE" }}><b>{parseFloat(window.web3Bsc.utils.fromWei(purseStakingTotalReceipt, 'Ether')).toLocaleString('en-US', { maximumFractionDigits: 5 })+ " Share (100%)"}</b></div>
                 </div> 
               </div>
               <div>

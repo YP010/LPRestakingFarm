@@ -79,7 +79,7 @@ class Menu extends Component {
 
                 <br />
                 <div className="center mb-2" style={{ color: 'white' }}><b><big>Select Your Favourite pool entrees&nbsp;!</big></b></div>
-                <div className="center" style={{ color: 'silver' }}><small><FaExclamationCircle style={{fontSize:"13px", marginBottom:"3px"}}/>&nbsp;&nbsp;Attention&nbsp;: Be sure to familiar with protocol risks and fees before using the farms&nbsp;!</small></div>
+                <div className="center" style={{ color: 'silver' }}><small><FaExclamationCircle size={13} style={{marginBottom:"3px"}}/>&nbsp;&nbsp;Attention&nbsp;: Be sure to familiar with protocol risks and fees before using the farms&nbsp;!</small></div>
                 <br />
 
 
@@ -107,8 +107,8 @@ class Menu extends Component {
                                                                 )}
                                                                     on="hover"
                                                                     position="right center"
-                                                                    offsetY={0}
-                                                                    offsetX={5}
+                                                                    offsetY={-23}
+                                                                    offsetX={0}
                                                                     contentStyle={{ padding: '5px' }}
                                                                 ><span className="textInfo">APR are affected by the price of PURSE which has not yet stabilized. </span>
                                                                     <span className="textInfo mt-2">If it shows 'NaN' or 'Infinity', it means currently the pool has no LP token staked. </span>
@@ -120,8 +120,8 @@ class Menu extends Component {
                                                                 )}
                                                                     on="hover"
                                                                     position="right center"
-                                                                    offsetY={0}
-                                                                    offsetX={5}
+                                                                    offsetY={-23}
+                                                                    offsetX={0}
                                                                     contentStyle={{ padding: '5px' }}
                                                                 ><span className="textInfo">APY are calculated based on the compound APR number. </span>
                                                                     <span className="textInfo mt-2">The value shown on Farm Menu is based on daily compounding frequency. </span>
@@ -141,8 +141,8 @@ class Menu extends Component {
                                                             )}
                                                             on="hover"
                                                             position="right center"
-                                                            offsetY={0}
-                                                            offsetX={5}
+                                                            offsetY={-23}
+                                                            offsetX={0}
                                                             contentStyle={{ padding: '5px' }}
                                                         >
                                                             <span className="textInfo">The Multiplier represents the proportion of PURSE rewards each farm receives, as a proportion of the PURSE produced each block.<br /></span>

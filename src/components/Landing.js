@@ -3,10 +3,10 @@ import Button from 'react-bootstrap/Button'
 import Blockchain from '../Blockchain.png'
 import { NavLink } from './NavMenu'
 import MediaQuery from 'react-responsive'
-import Flip from 'react-reveal/Flip'
 import Bounce from 'react-reveal/Bounce'
 import Zoom from 'react-reveal/Zoom'
-  
+import { IoStar } from 'react-icons/io5'
+
 import './App.css';
 
 class Landing extends Component {
@@ -26,7 +26,7 @@ class Landing extends Component {
         </div>
 
         <div className="rowC mt-5" style={{borderTop:"1px solid grey"}}>
-            <Flip left>
+            <Bounce left>
             <div className="mt-5 mr-4" style={{minWidth:"300px", padding:"15px", borderRadius:"10px", backgroundColor:"rgba(106, 90, 205, 0.4)"}}>
                 <div className="textWhiteSmall" style={{borderBottom:"1px solid grey"}}><b>BDL Mechanism</b></div>
                 <div className="textWhite mt-2" style={{fontSize:"13px"}}><b>For every non-whitelisted transaction, 10% of the transacted PURSE amount is burned, 5% goes to distribution pool and 5% goes to liquidity pool.</b></div>
@@ -39,7 +39,7 @@ class Landing extends Component {
                 <div className="textWhiteSmall" style={{borderBottom:"1px solid grey"}}><b>PURSE Staking</b></div>
                 <div className="textWhite mt-2" style={{fontSize:"13px"}}><b>PURSE from distribution pool, derived from the 5% BDL Mechanism, is distributed to PURSE holders through PURSE staking.</b></div>
             </div>
-            </Flip>
+            </Bounce>
         </div>
     </MediaQuery>
 
@@ -75,6 +75,16 @@ class Landing extends Component {
         </div>
         </Bounce>
     </MediaQuery>
+
+    <Bounce right>
+    <div className="mt-5 textWhiteSmall" style={{minWidth:"300px", padding:"15px", borderRadius:"10px", backgroundColor:"rgba(106, 90, 205, 0.4)"}}>
+        <div className="center" style={{borderBottom: "1px solid grey"}}>•&nbsp;•&nbsp;•&nbsp;&nbsp;What are the whitelisted transactions?&nbsp;&nbsp;•&nbsp;•&nbsp;•</div>
+        <div className="mt-2 rowC" style={{fontSize:"13px"}}><IoStar style={{minWidth:"12px",marginTop:"2px"}}/>&nbsp;&nbsp;<div>PURSE harvested from PURSE-BUSD LP Restaking Farm contract</div></div>
+        <div className="mt-1 rowC" style={{fontSize:"13px"}}><IoStar style={{minWidth:"12px",marginTop:"2px"}}/>&nbsp;&nbsp;<div>PURSE staked into PURSE Staking contract</div></div>
+        <div className="mt-1 rowC" style={{fontSize:"13px"}}><IoStar style={{minWidth:"12px",marginTop:"2px"}}/>&nbsp;&nbsp;<div>PURSE withdrawn from PURSE Staking contract</div></div>
+        <div className="mt-1 rowC" style={{fontSize:"13px"}}><IoStar style={{minWidth:"12px",marginTop:"2px"}}/>&nbsp;&nbsp;<div>PURSE received when remove liquidity from PURSE-BUSD LP Pancake contract</div></div>
+    </div>
+    </Bounce>
     </div>
 
     );

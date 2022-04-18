@@ -1252,6 +1252,7 @@ class App extends Component {
       checkPurseAmount={this.checkPurseAmount}
       approvePurse = {this.approvePurse}
       stakeLoading={this.state.stakeLoading}
+      sum30TransferAmount={this.state.sum30TransferAmount}
     />
 
     return (
@@ -1274,14 +1275,14 @@ class App extends Component {
           <div className="container-fluid mt-4">
             <div className="row">
               <main role="main" className="col-lg-12 ml-auto mr-auto" style={{ maxWidth: '1000px' }}>
-                <div className="content mr-auto ml-auto">
+                <div className="content mr-auto ml-auto" id="content">
                   <Switch>
                     <Route path="/" exact > <Landing/> </Route>
                     <Route path="/home" exact > {maincontent} </Route>
                     <Route path="/lpfarm/menu" exact > {menucontent} </Route>
                     <Route path="/lpfarm/farmInfo" exact > {farmInfoContent} </Route>
                     <Route path="/lpfarm/oneinch" exact > {oneinchContent} </Route>
-                    <Route path="/distribution" exact > {distributionContent} </Route>
+                    {/*<Route path="/distribution" exact > {distributionContent} </Route>*/}
                     <Route path="/stake" exact > {stakeContent} </Route>
                     <Route path="/deposit" exact > {depositcontent} </Route>
                   </Switch>

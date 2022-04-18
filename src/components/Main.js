@@ -43,11 +43,11 @@ class Main extends Component {
                       <span style={{ position: "relative", top: '-1px' }}><BsFillQuestionCircleFill size={10} /></span>
                     )}
                       on="hover"
-                      position="right center"
-                      offsetY={0}
-                      offsetX={5}
+                      position="bottom"
+                      offsetY={-23}
+                      offsetX={0}
                       contentStyle={{ padding: '3px' }}
-                    ><span className="textInfo"> Currently based on the total supply of purse token </span>
+                    ><span className="textInfo"> Currently based on the total supply of PURSE token </span>
                     </Popup></span></th>
                   <th scope="col">PURSE Token Price</th>
                 </tr>
@@ -67,11 +67,11 @@ class Main extends Component {
                       <span style={{ position: "relative", top: '-1px' }}><BsFillQuestionCircleFill size={10} /></span>
                     )}
                       on="hover"
-                      position="right center"
-                      offsetY={0}
-                      offsetX={5}
+                      position="right"
+                      offsetY={-23}
+                      offsetX={0}
                       contentStyle={{ padding: '1px' }}
-                    ><span className="textInfo"> (Unit in Token / unit in Usd)</span>
+                    ><span className="textInfo"> (Unit in Token / Unit in Usd)</span>
                     </Popup></span></th>
 
                   <th scope="col">Distribution <span className="">
@@ -79,11 +79,11 @@ class Main extends Component {
                       <span style={{ position: "relative", top: '-1px' }}><BsFillQuestionCircleFill size={10} /></span>
                     )}
                       on="hover"
-                      position="right center"
-                      offsetY={0}
-                      offsetX={5}
+                      position="bottom"
+                      offsetY={-23}
+                      offsetX={0}
                       contentStyle={{ padding: '1px' }}
-                    ><span className="textInfo"> (Unit in Token / unit in Usd)</span>
+                    ><span className="textInfo"> (Unit in Token / Unit in Usd)</span>
                     </Popup></span></th>
 
                   <th scope="col">Liquidity <span className="">
@@ -91,11 +91,11 @@ class Main extends Component {
                       <span style={{ position: "relative", top: '-1px' }}><BsFillQuestionCircleFill size={10} /></span>
                     )}
                       on="hover"
-                      position="right center"
-                      offsetY={0}
-                      offsetX={5}
+                      position="left"
+                      offsetY={-23}
+                      offsetX={0}
                       contentStyle={{ padding: '1px' }}
-                    ><span className="textInfo"> (Unit in Token / unit in Usd) </span>
+                    ><span className="textInfo"> (Unit in Token / Unit in Usd) </span>
                     </Popup></span></th>
                 </tr>
               </thead>
@@ -168,8 +168,8 @@ class Main extends Component {
                     )}
                       on="hover"
                       position="left"
-                      offsetY={0}
-                      offsetX={5}
+                      offsetY={-23}
+                      offsetX={0}
                       contentStyle={{ padding: '3px' }}
                     ><span className="textInfo"> Currently based on the total supply of purse token </span>
                     </Popup></span></th>
@@ -189,9 +189,9 @@ class Main extends Component {
                       <span style={{ position: "relative", top: '-1px' }}><BsFillQuestionCircleFill size={10} /></span>
                     )}
                       on="hover"
-                      position="top center"
-                      offsetY={0}
-                      offsetX={5}
+                      position="bottom"
+                      offsetY={-23}
+                      offsetX={0}
                       contentStyle={{ padding: '1px' }}
                     ><span className="textInfo"> (Unit in Token / unit in Usd)</span>
                     </Popup></span></th>
@@ -212,9 +212,9 @@ class Main extends Component {
                       <span style={{ position: "relative", top: '-1px' }}><BsFillQuestionCircleFill size={10} /></span>
                     )}
                       on="hover"
-                      position="top center"
-                      offsetY={0}
-                      offsetX={5}
+                      position="bottom"
+                      offsetY={-23}
+                      offsetX={0}
                       contentStyle={{ padding: '1px' }}
                     ><span className="textInfo"> (Unit in Token / unit in Usd)</span>
                     </Popup></span></th>
@@ -235,9 +235,9 @@ class Main extends Component {
                       <span style={{ position: "relative", top: '-1px' }}><BsFillQuestionCircleFill size={10} /></span>
                     )}
                       on="hover"
-                      position="right center"
-                      offsetY={0}
-                      offsetX={5}
+                      position="bottom"
+                      offsetY={-23}
+                      offsetX={0}
                       contentStyle={{ padding: '1px' }}
                     ><span className="textInfo"> (Unit in Token / unit in Usd) </span>
                     </Popup></span></th>

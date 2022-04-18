@@ -15,13 +15,14 @@ import './App.css'
 import {
   NavLink,
   NavLink0,
+  NavLinkHome,
 } from './NavMenu'
 
 
 class Navb extends Component {
   render() {
     return (
-      <nav className="navbar navbar-dark top bg-dark flex-md-nowrap p-0 shadow" style={{height:"50px",position:"fixed",width:"100%", top:"0",zIndex:"1"}}>
+      <nav className="navbar navbar-dark top bg-dark flex-md-nowrap p-0 shadow" style={{height:"50px",position:"fixed",width:"100%", top:"0",zIndex:"2"}}>
         <div className="navbar-brand col-sm-3 col-md-2 mt-1 md-1 mr-0 rowB">
           <MediaQuery maxWidth={960}>
             <Menu>
@@ -38,12 +39,10 @@ class Navb extends Component {
               </div>        
             </Menu>
           </MediaQuery>
-          <div to='/menu' className="textWhiteHeading mr-5 ml-4 rowC" style={{ cursor: "pointer" }} onClick={() => {
-            window.open(`https://www.pundix.com/`, '_blank')
-          }}>
-            <img src={purse} width="30" height="30" className="d-inline-block" alt="" />
-            &nbsp; <b> PURSE </b>
-          </div>&nbsp;&nbsp;&nbsp;
+          <NavLinkHome className="mr-5 ml-4 rowC" style={{ cursor: "pointer" }} to='/'>
+            <img src={purse} width="30" height="30" className="d-inline-block" alt="" />&nbsp; 
+            <b className="textWhiteHeading"> PURSE </b>
+          </NavLinkHome>&nbsp;&nbsp;&nbsp;
 
           <MediaQuery minWidth={961}>
           <div className="mr-4">
@@ -51,7 +50,7 @@ class Navb extends Component {
           </div>
           <div className="mr-4">
             <Dropdown>
-              <Dropdown.Toggle className='center' variant="transparent" style={{padding:0}}><NavLink0 to="/lpfarm/farmInfo"> Farm</NavLink0></Dropdown.Toggle>
+              <Dropdown.Toggle className='center' variant="transparent" style={{padding:0,color:"#D3D3D3"}}>Farm</Dropdown.Toggle>
                <Dropdown.Menu style={{backgroundColor:"#28313b", marginTop:"8px"}}>
                 <Dropdown.Item href="/lpfarm/farmInfo">
                   <div className="dropdown0" style={{ paddingBottom: '12px' }}>Farm Dashboard</div>
@@ -140,7 +139,7 @@ class Navb extends Component {
                 </MediaQuery>
                 <MediaQuery maxWidth={600}>
                 <Dropdown style={{position:"absolute", top:"0px" ,right:"-2px"}}>
-                  <Dropdown.Toggle variant="transparent"><FaWallet style={{color:"white",fontSize:"20px"}}/></Dropdown.Toggle>
+                  <Dropdown.Toggle variant="transparent"><FaWallet size={20} style={{color:"white"}}/></Dropdown.Toggle>
                   <Dropdown.Menu style={{backgroundColor:"#28313b", marginTop:"5px"}}>
                     <Dropdown.Item>
                       <Buttons variant="secondary" size="sm" style={{width:"100%", backgroundColor:"#6A5ACD", marginTop:"10px"}} className='center' onClick={() => {
