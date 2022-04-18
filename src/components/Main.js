@@ -71,7 +71,7 @@ class Main extends Component {
                       offsetY={-23}
                       offsetX={0}
                       contentStyle={{ padding: '1px' }}
-                    ><span className="textInfo"> (Unit in Token / Unit in Usd)</span>
+                    ><span className="textInfo"> (Unit in Token / Unit in USD)</span>
                     </Popup></span></th>
 
                   <th scope="col">Distribution <span className="">
@@ -83,7 +83,7 @@ class Main extends Component {
                       offsetY={-23}
                       offsetX={0}
                       contentStyle={{ padding: '1px' }}
-                    ><span className="textInfo"> (Unit in Token / Unit in Usd)</span>
+                    ><span className="textInfo"> (Unit in Token / Unit in USD)</span>
                     </Popup></span></th>
 
                   <th scope="col">Liquidity <span className="">
@@ -95,7 +95,7 @@ class Main extends Component {
                       offsetY={-23}
                       offsetX={0}
                       contentStyle={{ padding: '1px' }}
-                    ><span className="textInfo"> (Unit in Token / Unit in Usd) </span>
+                    ><span className="textInfo"> (Unit in Token / Unit in USD) </span>
                     </Popup></span></th>
                 </tr>
               </thead>
@@ -193,7 +193,7 @@ class Main extends Component {
                       offsetY={-23}
                       offsetX={0}
                       contentStyle={{ padding: '1px' }}
-                    ><span className="textInfo"> (Unit in Token / unit in Usd)</span>
+                    ><span className="textInfo"> (Unit in Token / unit in USD)</span>
                     </Popup></span></th>
                     <th scope="col">(Past 30 days&nbsp;Sum)</th>
                 </tr>
@@ -216,7 +216,7 @@ class Main extends Component {
                       offsetY={-23}
                       offsetX={0}
                       contentStyle={{ padding: '1px' }}
-                    ><span className="textInfo"> (Unit in Token / unit in Usd)</span>
+                    ><span className="textInfo"> (Unit in Token / unit in USD)</span>
                     </Popup></span></th>
                     <th scope="col">(Past 30 days&nbsp;Sum)</th>
                 </tr>
@@ -239,7 +239,7 @@ class Main extends Component {
                       offsetY={-23}
                       offsetX={0}
                       contentStyle={{ padding: '1px' }}
-                    ><span className="textInfo"> (Unit in Token / unit in Usd) </span>
+                    ><span className="textInfo"> (Unit in Token / unit in USD) </span>
                     </Popup></span></th>
                     <th scope="col">(Past 30 days&nbsp;Sum)</th>
                 </tr>
