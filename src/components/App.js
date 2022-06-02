@@ -230,14 +230,23 @@ class App extends Component {
   async loadBlockchainStakingData() {
     // Load PurseStaking
     let purseStakingUserInfo = await this.loadPurseStakingUserInfo()
+    let purseStakingUserReceipt = purseStakingUserInfo[0]
+    let purseStakingUserNewReceipt = purseStakingUserInfo[1]
+    let purseStakingUserWithdrawReward = purseStakingUserInfo[2]
+    let purseStakingUserLockTime = purseStakingUserInfo[3]
     let purseStakingUserStake = await this.loadPurseStakingUserStake()
     let purseStakingTotalStake = await this.loadPurseStakingTotalStake()
     let purseStakingTotalReceipt = await this.loadPurseStakingTotalReceipt()
+    let purseStakingLockPeriod = await this.loadPurseStakingLockPeriod()
 
-    this.setState({ purseStakingUserReceipt: purseStakingUserInfo.toString()})
+    this.setState({ purseStakingUserReceipt: purseStakingUserReceipt.toString()})
+    this.setState({ purseStakingUserNewReceipt: purseStakingUserNewReceipt.toString()})
+    this.setState({ purseStakingUserWithdrawReward: purseStakingUserWithdrawReward.toString()})
+    this.setState({ purseStakingUserLockTime: purseStakingUserLockTime.toString()})
     this.setState({ purseStakingUserStake: purseStakingUserStake.toString() })
     this.setState({ purseStakingTotalStake: purseStakingTotalStake.toString() })
     this.setState({ purseStakingTotalReceipt: purseStakingTotalReceipt.toString() })
+    this.setState({ purseStakingLockPeriod: purseStakingLockPeriod.toString() })
   }
   async loadBlockchainUserData() {
     // Load PurseTokenUpgradable
@@ -467,8 +476,12 @@ class App extends Component {
       return purseStakingTotalReceipt
     }
     async loadPurseStakingTotalStake() {
-      let purseStakingTotalReceipt = await this.state.purseTokenUpgradable.methods.balanceOf("0xFb1D31a3f51Fb9422c187492D8EA14921d6ea6aE").call()
-      return purseStakingTotalReceipt
+      let purseStakingTotalStake = await this.state.purseTokenUpgradable.methods.balanceOf("0xFb1D31a3f51Fb9422c187492D8EA14921d6ea6aE").call()
+      return purseStakingTotalStake
+    }
+    async loadPurseStakingLockPeriod() {
+      let purseStakingLockPeriod = await this.state.purseStaking.methods.lockPeriod().call()
+      return purseStakingLockPeriod
     }
 
   // ***************************TVL & APR***********************************************************************
@@ -1004,12 +1017,66 @@ class App extends Component {
     }
   }
 
+  withdrawLocked = async () => {
+    if (this.state.walletConnect == true) {
+      let purseStaking = new window.web3Con.eth.Contract(PurseStaking.abi, "0xFb1D31a3f51Fb9422c187492D8EA14921d6ea6aE") 
+      this.setState({ stakeLoading: false })
+      await purseStaking.methods.withdrawLockedAmount().send({ from: this.state.account }).then(async (result) => {
+        this.componentWillMount()
+        this.setState({ stakeLoading: true })
+      }).catch((err) => {
+        this.setState({ stakeLoading: true })
+        if (err.code === 4001) {
+          alert("Something went wrong. Code: 4001 User rejected the request.")
+        } else {
+          console.error(err)
+        }
+      });   
+    } else if (this.state.wallet == true) {
+      let purseStaking = new window.web3.eth.Contract(PurseStaking.abi, "0xFb1D31a3f51Fb9422c187492D8EA14921d6ea6aE") 
+      this.setState({ stakeLoading: false })
+      await purseStaking.methods.withdrawLockedAmount().send({ from: this.state.account }).then(async (result) => {
+        this.componentWillMount()
+        this.setState({ stakeLoading: true })
+      }).catch((err) => {
+        this.setState({ stakeLoading: true })
+        if (err.code === 4001) {
+          alert("Something went wrong. Code: 4001 User rejected the request.")
+        } else {
+          console.error(err)
+        }
+      });  
+    }
+  }
+
   checkPurseAmount = async (receipt) => {
     let purseStakingTotalStake = await this.loadPurseStakingTotalStake()
     let purseStakingTotalReceipt = await this.loadPurseStakingTotalReceipt()
-    let purseWei = bigInt(receipt * purseStakingTotalStake / purseStakingTotalReceipt).toString()
-    let purse = window.web3Bsc.utils.fromWei(purseWei, 'Ether').toString()
-    return purse
+    let receiptToken = this.state.purseStakingUserReceipt
+    let newArray
+    let receiptToken_ = window.web3Bsc.utils.fromWei(receiptToken, 'Ether').toString()
+    let receipt_ = window.web3Bsc.utils.fromWei(receipt, 'Ether').toString()
+    if(bigInt(receiptToken).value <= 0) {
+      let purseRewardWei = (bigInt(receipt).value * bigInt(purseStakingTotalStake).value / bigInt(purseStakingTotalReceipt).value).toString()
+      let purseReward = window.web3Bsc.utils.fromWei(purseRewardWei, 'Ether').toString()
+      newArray = [0, receipt_, purseReward, 0]
+    } else {
+      if(bigInt(receipt).value > bigInt(receiptToken).value) {
+          let newReceipt = (bigInt(receipt).value - bigInt(receiptToken).value).toString()
+          let newReceipt_ =  window.web3Bsc.utils.fromWei(newReceipt, 'Ether').toString()
+          let purseRewardWei = (bigInt(newReceipt).value * bigInt(purseStakingTotalStake).value / bigInt(purseStakingTotalReceipt).value).toString()
+          let purseReward = window.web3Bsc.utils.fromWei(purseRewardWei, 'Ether').toString()
+
+          let purseWei = (bigInt(receiptToken).value * bigInt(purseStakingTotalStake).value / bigInt(purseStakingTotalReceipt).value).toString()
+          let purse = window.web3Bsc.utils.fromWei(purseWei, 'Ether').toString()
+          newArray = [receiptToken_, newReceipt_ ,purseReward, purse]
+      } else {
+          let purseWei = (bigInt(receipt).value * bigInt(purseStakingTotalStake).value / bigInt(purseStakingTotalReceipt).value).toString()
+          let purse = window.web3Bsc.utils.fromWei(purseWei, 'Ether').toString()
+          newArray = [receipt_, 0, 0, purse]
+      }
+    }
+    return newArray
   }
 
   approvePurse = async () => {
@@ -1095,11 +1162,15 @@ class App extends Component {
       rewardStartTimeDate: '0',
       claimAmount: '0',
       purseStakingUserReceipt: '0',
+      purseStakingUserNewReceipt: '0',
+      purseStakingUserWithdrawReward: '0',
+      purseStakingUserLockTime: '0',
       purseStakingUserPurse: '0',
       purseStakingUserStake: '0',
       purseStakingUserAllowance: '0',
       purseStakingTotalStake: '0',
       purseStakingTotalReceipt: '0',
+      purseStakingLockPeriod: '0',
       stakeLoading: true
     }
   }
@@ -1242,15 +1313,20 @@ class App extends Component {
       PURSEPrice={this.state.PURSEPrice}
       purseStaking={this.state.purseStaking}
       purseStakingUserReceipt={this.state.purseStakingUserReceipt}
+      purseStakingUserNewReceipt={this.state.purseStakingUserNewReceipt}
+      purseStakingUserWithdrawReward={this.state.purseStakingUserWithdrawReward}
+      purseStakingUserLockTime={this.state.purseStakingUserLockTime}
       purseStakingUserPurse={this.state.purseStakingUserPurse}
       purseStakingUserStake={this.state.purseStakingUserStake}
       purseStakingUserAllowance={this.state.purseStakingUserAllowance}
       purseStakingTotalStake={this.state.purseStakingTotalStake}
       purseStakingTotalReceipt={this.state.purseStakingTotalReceipt}
+      purseStakingLockPeriod={this.state.purseStakingLockPeriod}
       stake={this.stake}
       unstake={this.unstake}
       checkPurseAmount={this.checkPurseAmount}
       approvePurse = {this.approvePurse}
+      withdrawLocked = {this.withdrawLocked}
       stakeLoading={this.state.stakeLoading}
       sum30TransferAmount={this.state.sum30TransferAmount}
     />
